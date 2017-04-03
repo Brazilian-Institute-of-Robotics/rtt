@@ -145,8 +145,9 @@ namespace RTT
                 if (conn_it == connections.end())
                     return false;
                 descriptor = *conn_it;
+                bool updateCurrent = cur_channel && (cur_channel->get<1>() == descriptor.get<1>());
                 connections.erase(conn_it);
-                updateCurrentChannel( cur_channel && (cur_channel->get<1>() == descriptor.get<1>()) );
+                updateCurrentChannel(updateCurrent);
             }
 
             // disconnect needs to know if we're from Out->In (forward) or from In->Out
